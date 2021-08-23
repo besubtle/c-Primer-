@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+void show(vector<string> & v)
+{
+     for (auto & i : v)
+          cout << i << "," ;
+
+     cout << endl << "done" << endl;
+}
+
+bool find(vector<string> &v, string &word)
+{
+     for (auto &i :v)
+     {
+          if (i== word)
+               return 1;
+     }
+     cout << word << " will be stored in dictory" << endl;
+     return 0;
+}
+int main(){
+     string word;
+     vector<string> dictory = {"kangkang", "chengjin", "sunquanlin"};
+     show(dictory);
+     cout << "how many ingredients do you want to add in" << endl;
+     int number;
+     cin >> number;
+     while(number)
+     {
+          cin >> word;
+          if (find(dictory, word))
+               cout << word << " have existed." << endl;
+          else
+               dictory.push_back(word);
+
+          --number;
+
+          cout << "done" << endl;
+     }
+     
+     show(dictory);
+
+     return 0;
+}
