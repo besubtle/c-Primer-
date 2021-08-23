@@ -2,28 +2,29 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <utility>
 using namespace std;
 
 //查阅家庭以及家庭成员
-void lookup(map<string, vector<string> > &family)
+void lookup(map<string, vector<pair<string, string> > > &family)
 {
      for (auto &i: family)
      {     cout << "family: " << i.first << " has " << i.second.size()
                << ((i.second.size() > 1) ? " kids" : " kid") << ":\n\t\t ";
-          
+
           for (auto &l: i.second)
-               cout << l << " " ;
+               cout << l.first << "'s birth on " << l.second << endl ;
 
           cout << endl;
      }
-               
+
 }
 
 int main(){
      string child_name, family_name;
      vector<string> child;//什么作用
-     map<string, vector<string> > family = {{"first", {"kangkang"}},
-                                            {"second", {"qiqi"}}};
+     pair<string, string> child_birthday;
+     map<string, vector<pair<string, string> > > family ;
      lookup(family);//ok
 
      //添加新的家庭
@@ -34,17 +35,20 @@ int main(){
           int new_child_number;
           cin >> new_child_number;
           while(new_child_number)
-          {    cin >> child_name;
+          {    
+               cout << "input the name of the child and the birthday" << endl;
+               cin >> child_birthday.first;
+               cin >> child_birthday.second;
                //如何添加进去
 
-               family[family_name].push_back(child_name);//core
-               
+               family[family_name].push_back(child_birthday);//core
+
                --new_child_number;
           }
           cout << "this family's new member has been add " << endl;
      }
 
      lookup(family);
-     
+
      return 0;
-}    
+}  
